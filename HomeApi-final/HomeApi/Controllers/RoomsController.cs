@@ -59,10 +59,7 @@ namespace HomeApi.Controllers
             if (room == null)
                 return StatusCode(400, $"Ошибка: Комната с идентификатором {id} не подключена. Сначала подключите комнату!");
 
-            room.Name = request.Name;
-            room.Area = request.Area;
-            room.GasConnected = request.GasConnected;
-            room.Voltage = request.Voltage;
+            await _repository.UpdateRoom(room, request.Name, request.Area, request.GasConnected, request.Voltage);
 
             return StatusCode(200, $"Комната с идентификатором {id} обновлена.");
         }

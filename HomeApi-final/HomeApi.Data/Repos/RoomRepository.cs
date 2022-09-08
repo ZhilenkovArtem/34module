@@ -43,5 +43,19 @@ namespace HomeApi.Data.Repos
         {
             return await _context.Rooms.Where(r => r.Id == id).FirstOrDefaultAsync();
         }
+
+        public async Task UpdateRoom(Room room, string name, int area, bool gasConnected, int voltage)
+        {
+            room.Name = name;
+            room.Area = area;
+            room.GasConnected = gasConnected;
+            room.Voltage = voltage;
+
+            var entry = _context.Entry(room);
+            if (entry.State == EntityState.Detached)
+                _context.Rooms.Update(room);
+            
+            await _context.SaveChangesAsync();
+        }
     }
 }

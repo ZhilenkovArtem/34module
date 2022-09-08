@@ -11,6 +11,7 @@ namespace HomeApi.Data.Repos
     {
         Task<Room> GetRoomByName(string name);
         Task<Room> GetRoomById(Guid id);
+        Task UpdateRoom(Room room, string name, int area, bool gasConnected, int voltage);
         Task AddRoom(Room room);
     }
 }
